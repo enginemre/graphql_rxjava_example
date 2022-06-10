@@ -4,8 +4,7 @@ import com.apollographql.apollo3.ApolloClient
 import com.apollographql.apollo3.api.ApolloResponse
 import com.apollographql.apollo3.rx3.Rx3Apollo
 import com.engin.graphqlex.*
-import com.engin.graphqlex.client.Client
-import io.reactivex.android.schedulers.AndroidSchedulers
+import com.engin.graphqlex.service.Client
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 

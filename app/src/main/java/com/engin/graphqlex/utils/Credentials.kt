@@ -1,4 +1,4 @@
-package com.engin.graphqlex.credentials
+package com.engin.graphqlex.utils
 
 class Credentials {
     companion object {

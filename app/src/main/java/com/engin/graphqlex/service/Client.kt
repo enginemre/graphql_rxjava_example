@@ -1,4 +1,4 @@
-package com.engin.graphqlex.client
+package com.engin.graphqlex.service
 
 import com.apollographql.apollo3.ApolloClient
 import com.apollographql.apollo3.network.okHttpClient
