@@ -1,24 +1,31 @@
-package com.engin.graphqlex
+package com.engin.graphqlex.views
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import android.view.MenuItem
 import android.widget.TextView
-import com.apollographql.apollo3.api.ApolloResponse
-import com.engin.graphqlex.repository.UserRepo
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.NavigationUI
+import com.engin.graphqlex.R
+import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.rxjava3.disposables.CompositeDisposable
-import io.reactivex.rxjava3.disposables.Disposable
-import io.reactivex.rxjava3.observers.DisposableSingleObserver
-
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    private val disposable: CompositeDisposable = CompositeDisposable()
+//    private val disposable: CompositeDisposable = CompositeDisposable()
+        private lateinit var navigationController : NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        val textView = findViewById<TextView>(R.id.text1)
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.user_nav_host_fragment) as NavHostFragment
+        navigationController = navHostFragment.navController
+        val appBarConfiguration = AppBarConfiguration(navigationController.graph)
+        NavigationUI.setupActionBarWithNavController(this, navigationController, appBarConfiguration)
+        /* val textView = findViewById<TextView>(R.id.text1)
         textView.setOnClickListener {
 //            getUsers(25)
 //            getUserById("4026dd5e-819f-4670-a0ea-6725f60b4d9d")
@@ -27,15 +34,28 @@ class MainActivity : AppCompatActivity() {
 //            updateUser(id = "4026dd5e-819f-4670-a0ea-6725f60b4d9d", name = "HHH", rockets = "SEsl", twitter = "sdfsf")
 
 
-        }
+        }*/
 
 
     }
 
+    override fun onSupportNavigateUp(): Boolean {
+        return NavigationUI.navigateUp(navigationController,null)
+    }
 
-    private fun getUsers(limit: Int = 10) {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return if (item.itemId == android.R.id.home) {
+            onBackPressed()
+            true
+        } else
+            super.onOptionsItemSelected(item)
+
+    }
+
+
+  /*  private fun getUsers(limit: Int = 10) {
         disposable.add(
-            UserRepo.getUserList(limit).subscribeWith(object :
+            UserRemoteRepository.getUserList(limit).subscribeWith(object :
                 DisposableSingleObserver<ApolloResponse<UsersListQuery.Data>>() {
                 override fun onSuccess(t: ApolloResponse<UsersListQuery.Data>) {
                     for (element in t.data?.users!!)
@@ -53,7 +73,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun getUserById(id: String) {
         disposable.add(
-            UserRepo.getUserById(id).subscribeWith(object :
+            UserRemoteRepository.getUserById(id).subscribeWith(object :
                 DisposableSingleObserver<ApolloResponse<UserByIdQuery.Data>>() {
                 override fun onSuccess(t: ApolloResponse<UserByIdQuery.Data>) {
                     Log.d("UserById", "Success updated Name : ${t.data?.users_by_pk!!.name}")
@@ -68,7 +88,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun deleteUser(id: String) {
-        disposable.add(UserRepo.deleteUser(id).subscribeWith(object :
+        disposable.add(UserRemoteRepository.deleteUser(id).subscribeWith(object :
             DisposableSingleObserver<ApolloResponse<DeleteUserMutation.Data>>() {
             override fun onSuccess(t: ApolloResponse<DeleteUserMutation.Data>) {
                 Log.d(
@@ -87,7 +107,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun updateUser(id: String,name: String,rockets: String,twitter: String){
         disposable.add(
-            UserRepo.updateUser(name,rockets,twitter,id).subscribeWith(object: DisposableSingleObserver<ApolloResponse<UpdateUserMutation.Data>>(){
+            UserRemoteRepository.updateUser(name,rockets,twitter,id).subscribeWith(object: DisposableSingleObserver<ApolloResponse<UpdateUserMutation.Data>>(){
                 override fun onSuccess(t: ApolloResponse<UpdateUserMutation.Data>) {
                     Log.d("UpdateUser","Updated User Name : ${t.data?.update_users!!.returning[0].name}")
                 }
@@ -102,7 +122,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun createUser(name: String, rockets: String, twitter: String) {
         disposable.add(
-            UserRepo.createUser(name, rockets, twitter).subscribeWith(object :
+            UserRemoteRepository.createUser(name, rockets, twitter).subscribeWith(object :
                 DisposableSingleObserver<ApolloResponse<InsertUserMutation.Data>>() {
                 override fun onSuccess(t: ApolloResponse<InsertUserMutation.Data>) {
                     Log.d(
@@ -117,5 +137,5 @@ class MainActivity : AppCompatActivity() {
 
             })
         )
-    }
+    }*/
 }

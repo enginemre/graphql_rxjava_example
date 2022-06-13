@@ -2,17 +2,17 @@ package com.engin.graphqlex.service
 
 import com.apollographql.apollo3.ApolloClient
 import com.apollographql.apollo3.network.okHttpClient
+import com.engin.graphqlex.utils.Credentials
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import java.util.concurrent.TimeUnit
+import javax.inject.Inject
 
 
 /**
- * Singleton class for creating API client
+ * Creating API client
  */
-object Client {
-
-    const val BASE_URL:String = "http://api.spacex.land/graphql/"
+class Client @Inject constructor() {
 
     fun getApolloClient() : ApolloClient{
 
@@ -24,6 +24,6 @@ object Client {
                 .readTimeout(60, TimeUnit.SECONDS).
             build()
         }
-        return ApolloClient.Builder().serverUrl(BASE_URL).okHttpClient(okHttpClient).build()
+        return ApolloClient.Builder().serverUrl(Credentials.BASE_URL).okHttpClient(okHttpClient).build()
     }
 }
