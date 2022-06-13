@@ -58,8 +58,8 @@ dependencies {
     implementation("com.apollographql.apollo3:apollo-runtime:$apollo_version")
     implementation("com.apollographql.apollo3:apollo-rx3-support:$apollo_version")
     //RxJava
-    implementation "io.reactivex.rxjava2:rxjava:2.2.20"
-    implementation "io.reactivex.rxjava2:rxandroid:2.1.1"
+    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
+    implementation 'io.reactivex.rxjava3:rxjava:3.1.5'
     //Okhttp
     implementation 'com.squareup.okhttp3:okhttp:4.9.3'
     implementation "com.squareup.okhttp3:logging-interceptor:$logging_http_version"
