@@ -14,7 +14,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/user_detail_main"
-    tools:context=".views.UserDetailFragment">
+    tools:context=".views.userdetail.UserDetailFragment">
 
     <ProgressBar
         android:id="@+id/user_detail_progress_bar"

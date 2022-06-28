@@ -9,7 +9,7 @@
     <fragment
 
         android:id="@+id/userHomeFragment"
-        android:name="com.engin.graphqlex.views.UserHomeFragment"
+        android:name="com.engin.graphqlex.views.userhome.UserHomeFragment"
         android:label="Users"
         tools:layout="@layout/fragment_user_home" >
         <action
@@ -18,7 +18,7 @@
     </fragment>
     <fragment
         android:id="@+id/userDetailFragment"
-        android:name="com.engin.graphqlex.views.UserDetailFragment"
+        android:name="com.engin.graphqlex.views.userdetail.UserDetailFragment"
         android:label="User Detail"
         tools:layout="@layout/fragment_user_detaill" >
         <argument
